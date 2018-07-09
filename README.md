@@ -3,6 +3,7 @@ Implementation of http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.628.4
 
 Example Output:
 
+```
 Method: Yang-Zhang
 Date: 7/9/2018
 
@@ -17,3 +18,4 @@ YZ Volatility - 1 Sigma:  15.42
 1 Sigma DOWN: 2774.25
 2 Sigma DOWN: 2771.00
 3 Sigma DOWN: 2770.00
+```
