@@ -9,6 +9,8 @@ module.exports = function(n, data){
         let open_vol = 0;
         let window_rs = 0;
 
+        data = data.reverse();
+
         for (let i=1; i<data.length; i++) {
         
             log_ho = Math.log(data[i]['high'] / data[i]['open']);
@@ -34,7 +36,9 @@ module.exports = function(n, data){
         window_rs = window_rs * (1.0 / (n - 1.0));
 
         const k = 0.34 / ( 1.34 + ( n + 1 ) / ( n - 1 ) );
-        return (Math.sqrt(open_vol + k * close_vol + (1 - k) * window_rs) * Math.sqrt(252)) * 100;
+        const yz = open_vol + (k * close_vol) + ((1 - k) * window_rs);
+
+        return data[0].close * (yz * 100);
         
     };
 
