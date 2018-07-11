@@ -28,17 +28,17 @@ const yzSigmas = {
     threeDown: data[0].close - ((yangZhang.mean + yangZhang.stdDev) * 3),
 };
 
-const output = `#Volatility Estimator
+const output = `# Volatility Estimator
 Implementation of various volatility calculations in Javascript.
 
 Data represents the E-mini S&P 500 Futures
 
-#Latest Calculation
-    Instrument: ES
-    Method: Yang-Zhang
-    Notes: Implementation of http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.628.4037&rep=rep1&type=pdf
-    Latest Data: ${data[0].date}
-    Periods: ${n}
+# Latest Calculation
+    * Instrument: ES
+    * Method: Yang-Zhang
+    * Notes: Implementation of http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.628.4037&rep=rep1&type=pdf
+    * Latest Data: ${data[0].date}
+    * Periods: ${n}
 
     | ------------- |:--------:|
     | 3 Sigma UP    |  ${stats.display(yzSigmas.threeUp)} |
