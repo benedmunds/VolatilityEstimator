@@ -47,12 +47,11 @@ Periods: ${n}
 
 | Meta        |            | Stat          | Value    |
 | ----------- | ---------- | ------------- |:--------:|
-| Instrument  | ES         | 3 Sigma UP    |  ${stats.display(yzSigmas.threeUp)} |
-| Method      | Yang-Zhang | 2 Sigma UP    |  ${stats.display(yzSigmas.twoUp)} |
-| Latest Data | ${data[0].date}  | 1 Sigma UP    |  ${stats.display(yzSigmas.oneUp)} |
-| Periods     | ${n}         | Last Close    |  ${yzSigmas.lastClose.toFixed(2)} |
-|             |            | YZ Volatility |   ${(yangZhang.vol).toFixed(2)}  |
-|             |            | 1 Sigma DOWN  |  ${stats.display(yzSigmas.oneDown)} |
+| Instrument  | ES         |  3 Sigma UP   |  ${stats.display(yzSigmas.threeUp)} |
+| Method      | Yang-Zhang |  2 Sigma UP   |  ${stats.display(yzSigmas.twoUp)} |
+| Latest Data | ${data[0].date}  |  1 Sigma UP   |  ${stats.display(yzSigmas.oneUp)} |
+| Periods     | ${n}         |  Volatility   |   ${(yangZhang.vol).toFixed(2)}  |
+| Last Close  | ${yzSigmas.lastClose.toFixed(2)}    | 1 Sigma DOWN  |  ${stats.display(yzSigmas.oneDown)} |
 |             |            | 2 Sigma DOWN  |  ${stats.display(yzSigmas.twoDown)} |
 |             |            | 3 Sigma DOWN  |  ${stats.display(yzSigmas.threeDown)} |
 `;
