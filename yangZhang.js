@@ -1,8 +1,9 @@
-// 'use strict';
+'use strict';
 const stats = require('./stats.js');
 
 module.exports = function(n, data){
 
+    //YZ calc ported from https://github.com/jasonstrimpel/volatility-trading/blob/master/volatility/models/YangZhang.py
     const calculateVol = function(data){
 
         let close_vol = 0;
@@ -13,17 +14,17 @@ module.exports = function(n, data){
 
         for (let i=1; i<data.length; i++) {
         
-            log_ho = Math.log(data[i]['high'] / data[i]['open']);
-            log_lo = Math.log(data[i]['low'] / data[i]['open']);
-            log_co = Math.log(data[i]['close'] / data[i]['open']);
+            const log_ho = Math.log(data[i]['high'] / data[i]['open']);
+            const log_lo = Math.log(data[i]['low'] / data[i]['open']);
+            const log_co = Math.log(data[i]['close'] / data[i]['open']);
             
-            log_oc = Math.log(data[i]['open'] / data[i-1]['close']);
-            log_oc_sq = Math.pow(log_oc, 2);
+            const log_oc = Math.log(data[i]['open'] / data[i-1]['close']);
+            const log_oc_sq = Math.pow(log_oc, 2);
             
-            log_cc = Math.log(data[i]['close'] / data[i-1]['close']);
-            log_cc_sq = Math.pow(log_cc, 2);
+            const log_cc = Math.log(data[i]['close'] / data[i-1]['close']);
+            const log_cc_sq = Math.pow(log_cc, 2);
             
-            rs = log_ho * (log_ho - log_co) + log_lo * (log_lo - log_co);
+            const rs = log_ho * (log_ho - log_co) + log_lo * (log_lo - log_co);
             
             close_vol += log_cc_sq;
             open_vol += log_oc_sq;

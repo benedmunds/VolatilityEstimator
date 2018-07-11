@@ -1,3 +1,5 @@
+'use strict';
+
 const stats = require('./stats.js');
 const yz = require('./yangZhang.js');
 const data = require('./data.json').map(function(v){
@@ -9,6 +11,7 @@ const data = require('./data.json').map(function(v){
         close: v[4]
     };
 }).reverse();
+
 
 const n = 20; //20 period 
 
