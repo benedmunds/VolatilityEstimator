@@ -3,7 +3,7 @@ Implementation of various volatility calculations in Javascript.
 
 Data represents the E-mini S&P 500 Futures
 
-# Latest Calculations
+## Latest Calculations
 
 Method: Yang-Zhang 
 
