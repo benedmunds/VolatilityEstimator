@@ -1,21 +1,21 @@
-Implementation of http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.628.4037&rep=rep1&type=pdf in Javascript
+#Volatility Estimator
+Implementation of various volatility calculations in Javascript.
 
+Data represents the E-mini S&P 500 Futures
 
-Example Output:
+#Latest Calculation
+    Instrument: ES
+    Method: Yang-Zhang
+    Notes: Implementation of http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.628.4037&rep=rep1&type=pdf
+    Latest Data: 7/10/2018
+    Periods: 20
 
-```
-Method: Yang-Zhang
-Date: 7/9/2018
-
-3 Sigma UP: 2805.00
-2 Sigma UP: 2804.00
-1 Sigma UP: 2803.00
-
-Last Close: 2787.50
-YZ Volatility - Estimate: 14.80
-YZ Volatility - 1 Sigma:  15.42
-
-1 Sigma DOWN: 2774.25
-2 Sigma DOWN: 2771.00
-3 Sigma DOWN: 2770.00
-```
+    | ------------- |:--------:|
+    | 3 Sigma UP    |  2850.00 |
+    | 2 Sigma UP    |  2832.25 |
+    | 1 Sigma UP    |  2814.25 |
+    | Last Close    |  2796.50 |
+    | YZ Volatility |   18.32  |
+    | 1 Sigma DOWN  |  2778.75 |
+    | 2 Sigma DOWN  |  2760.75 |
+    | 3 Sigma DOWN  |  2743.00 |
