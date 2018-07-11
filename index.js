@@ -34,21 +34,22 @@ Implementation of various volatility calculations in Javascript.
 Data represents the E-mini S&P 500 Futures
 
 # Latest Calculation
-    * Instrument: ES
-    * Method: Yang-Zhang
-    * Notes: Implementation of http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.628.4037&rep=rep1&type=pdf
-    * Latest Data: ${data[0].date}
-    * Periods: ${n}
+* Instrument: ES
+* Method: Yang-Zhang
+* Notes: Implementation of http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.628.4037&rep=rep1&type=pdf
+* Latest Data: ${data[0].date}
+* Periods: ${n}
 
-    | ------------- |:--------:|
-    | 3 Sigma UP    |  ${stats.display(yzSigmas.threeUp)} |
-    | 2 Sigma UP    |  ${stats.display(yzSigmas.twoUp)} |
-    | 1 Sigma UP    |  ${stats.display(yzSigmas.oneUp)} |
-    | Last Close    |  ${yzSigmas.lastClose.toFixed(2)} |
-    | YZ Volatility |   ${(yangZhang.vol).toFixed(2)}  |
-    | 1 Sigma DOWN  |  ${stats.display(yzSigmas.oneDown)} |
-    | 2 Sigma DOWN  |  ${stats.display(yzSigmas.twoDown)} |
-    | 3 Sigma DOWN  |  ${stats.display(yzSigmas.threeDown)} |
+| Stat          | Value    |
+| ------------- |:--------:|
+| 3 Sigma UP    |  ${stats.display(yzSigmas.threeUp)} |
+| 2 Sigma UP    |  ${stats.display(yzSigmas.twoUp)} |
+| 1 Sigma UP    |  ${stats.display(yzSigmas.oneUp)} |
+| Last Close    |  ${yzSigmas.lastClose.toFixed(2)} |
+| YZ Volatility |   ${(yangZhang.vol).toFixed(2)}  |
+| 1 Sigma DOWN  |  ${stats.display(yzSigmas.oneDown)} |
+| 2 Sigma DOWN  |  ${stats.display(yzSigmas.twoDown)} |
+| 3 Sigma DOWN  |  ${stats.display(yzSigmas.threeDown)} |
 `;
 
 
