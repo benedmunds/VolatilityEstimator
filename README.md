@@ -3,17 +3,11 @@ Implementation of various volatility calculations in Javascript.
 
 Data represents the E-mini S&P 500 Futures
 
-# Latest Calculation 
-
-Instrument: ES 
+# Latest Calculations
 
 Method: Yang-Zhang 
 
 Notes: Implementation of http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.628.4037&rep=rep1&type=pdf 
-
-Latest Data: 7/10/2018 
-
-Periods: 20 
 
 | Meta        |            | Stat          | Value    |
 | ----------- | ---------- | ------------- |:--------:|
