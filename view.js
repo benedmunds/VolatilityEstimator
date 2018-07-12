@@ -20,8 +20,8 @@ module.exports = function(instrument, date, n, close, modelName, model){
 | Method      | ${modelName.padEnd(14, ' ')} |  3 Sigma UP   |  ${stats.display(sigmas.threeUp)} |
 | Latest Data | ${date}      |  2 Sigma UP   |  ${stats.display(sigmas.twoUp)} |
 | Periods     | ${n}             |  1 Sigma UP   |  ${stats.display(sigmas.oneUp)} |
-| Last Close  | ${close.toFixed(2)}        |  Volatility   |   ${(model.vol).toFixed(2)}  |
-|             |                | 1 Sigma DOWN  |  ${stats.display(sigmas.oneDown)} |
+| Last Close  | ${stats.display(close)}        |  Volatility   |   ${(model.vol).toFixed(2)}  |
+| 1 Sigma Vol | ${stats.display(sigmas.oneUp - close)}          | 1 Sigma DOWN  |  ${stats.display(sigmas.oneDown)} |
 |             |                | 2 Sigma DOWN  |  ${stats.display(sigmas.twoDown)} |
 |             |                | 3 Sigma DOWN  |  ${stats.display(sigmas.threeDown)} |
 `;
