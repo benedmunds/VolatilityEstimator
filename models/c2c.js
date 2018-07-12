@@ -1,5 +1,5 @@
 'use strict';
-const stats = require('./stats.js');
+const stats = require('../lib/stats.js');
 
 module.exports = function(n, data){
 

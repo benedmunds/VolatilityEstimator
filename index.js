@@ -2,11 +2,11 @@
 
 //Bootstrap
 const fs = require('fs');
-const stats = require('./stats.js');
-const c2c = require('./c2c.js');
-const yz = require('./yangZhang.js');
-const view = require('./view.js');
-const source = require('./data.json').map(function(v){
+const stats = require('./lib/stats.js');
+const view = require('./lib/view.js');
+const c2c = require('./models/c2c.js');
+const yz = require('./models/yangZhang.js');
+const source = require('./data/es.json').map(function(v){
     return {
         date: v[0],
         open: v[1],
@@ -33,20 +33,11 @@ const yzOutput = view(instrument, yzData[0].date, n, yzData[0].close, 'Yang Zhan
 
 
 //Format Output
-const output = `# Volatility Estimator
-Implementation of various volatility calculations in Javascript.
-
-Data represents the E-mini S&P 500 Futures
-
-Currently supports Close-to-Close (http://www.todaysgroep.nl/media/236846/measuring_historic_volatility.pdf) and Yang-Zhang (http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.628.4037&rep=rep1&type=pdf) volatility models.
-
-
-## Latest Calculations
+const output = `## ${instrument}
 ${c2cOutput}
 ${yzOutput}
 `;
 
-
 //Write output to README.md and to the console
-fs.writeFileSync('./README.md', output);
+fs.writeFileSync(`output/${instrument.replace(/\W/g,'')}.md`, output);
 console.log(output);

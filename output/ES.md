@@ -1,12 +1,4 @@
-# Volatility Estimator
-Implementation of various volatility calculations in Javascript.
-
-Data represents the E-mini S&P 500 Futures
-
-Currently supports Close-to-Close (http://www.todaysgroep.nl/media/236846/measuring_historic_volatility.pdf) and Yang-Zhang (http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.628.4037&rep=rep1&type=pdf) volatility models.
-
-
-## Example Calculations
+## /ES
 
 ### Close-to-Close
 
