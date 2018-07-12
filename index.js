@@ -2,42 +2,50 @@
 
 //Bootstrap
 const fs = require('fs');
+const moment = require('moment-timezone');
+const data = require('./lib/data.js');
 const stats = require('./lib/stats.js');
 const view = require('./lib/view.js');
+const email = require('./lib/email.js');
 const c2c = require('./models/c2c.js');
 const yz = require('./models/yangZhang.js');
-const source = require('./data/es.json').map(function(v){
-    return {
-        date: v[0],
-        open: v[1],
-        high: v[2],
-        low: v[3],
-        close: v[4]
-    };
-}).reverse();
-
 
 //Config
-const instrument = '/ES';
-const n = 20; //20 period 
+const instrument = process.argv[2];
+const open = process.argv[3];
+const close = process.argv[4]
+const period = parseInt(process.argv[5]);
+const recipients = process.argv[6]
 
+//Pull Data and Process
+data(instrument, open, close, period, function(source){
 
-//Build out the data models
-const c2cData = [...source];
-const close2CloseModel = c2c(n, c2cData, stats);
-const c2cOutput = view(instrument, c2cData[0].date, n, c2cData[0].close, 'Close-to-Close', close2CloseModel);
+	//Build out the data models
+	const c2cData = [...source];
+	const close2CloseModel = c2c(period, c2cData, stats);
+	const c2cOutput = view.markdown(instrument, c2cData[0].date, period, c2cData[0].close, 'Close-to-Close', close2CloseModel);
+	const c2cHtml = view.html(instrument, c2cData[0].date, period, c2cData[0].close, 'Close-to-Close', close2CloseModel);
 
-const yzData = [...source];
-const yangZhangModel = yz(n, yzData, stats);
-const yzOutput = view(instrument, yzData[0].date, n, yzData[0].close, 'Yang Zhang', yangZhangModel);
+	const yzData = [...source];
+	const yangZhangModel = yz(period, yzData, stats);
+	const yzOutput = view.markdown(instrument, yzData[0].date, period, yzData[0].close, 'Yang Zhang', yangZhangModel);
+	const yzHtml = view.html(instrument, yzData[0].date, period, yzData[0].close, 'Yang Zhang', yangZhangModel);
 
+	//Format Output
+	const markdown = `## ${instrument}
+		${c2cOutput}
+		${yzOutput}
+	`;
+	const html = `<h2>${instrument}</h2>
+		${c2cHtml}
+		${yzHtml}
+	`;
 
-//Format Output
-const output = `## ${instrument}
-${c2cOutput}
-${yzOutput}
-`;
+	//Write output to output file and to the console
+	fs.writeFileSync(`output/${instrument.replace(/\W/g,'')}.md`, markdown);
+	console.log(markdown);
 
-//Write output to README.md and to the console
-fs.writeFileSync(`output/${instrument.replace(/\W/g,'')}.md`, output);
-console.log(output);
+	//Email Report
+	email(recipients, `${instrument} Volatility Report for ${moment().format('YYYY-MM-DD')}`, html);
+
+});

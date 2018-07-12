@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "csv-parse": "^2.5.0",
+    "dotenv": "^6.0.0",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.21",
+    "nodemailer": "^4.6.7",
+    "request": "^2.87.0"
+  }
+}

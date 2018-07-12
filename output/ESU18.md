@@ -1,12 +1,4 @@
-# Volatility Estimator
-Implementation of various volatility calculations in Javascript.
-
-Data represents the E-mini S&P 500 Futures
-
-Currently supports Close-to-Close (http://www.todaysgroep.nl/media/236846/measuring_historic_volatility.pdf) and Yang-Zhang (http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.628.4037&rep=rep1&type=pdf) volatility models.
-
-
-## Example Calculations
+## ESU18
 		
 ### Close-to-Close
 
@@ -35,24 +27,4 @@ Currently supports Close-to-Close (http://www.todaysgroep.nl/media/236846/measur
 |             |                | 2 Sigma DOWN  |  2747.00 |
 |             |                | 3 Sigma DOWN  |  2733.75 |
 
-
-## Setup
-
-Copy ./.env.default to ./.env
-
-Update .env with your email settings
-
-
-## Example Usage
-
-Call the index.js file from the command line with the following parameters:
-
-    $ node index.js {instrument} {sessionStart} {sessionEnd} {period} {commaSeparatedEmailRecipients}
-
-
-For example:
-
-    $ node index.js 'ESU18' '08:30' '15:14' 20 'yourEmail@gmail.com'
-
-would generate a volatility report for the ESU18 futures for a session of 8:30-15:14 central, with a 20 period average, and email the report to yourEmail@gmail.com
-
+	
