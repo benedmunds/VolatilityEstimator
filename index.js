@@ -12,10 +12,11 @@ const yz = require('./models/yangZhang.js');
 
 //Config
 const instrument = process.argv[2];
-const open = process.argv[3];
-const close = process.argv[4]
-const period = parseInt(process.argv[5]);
-const recipients = process.argv[6]
+const tickSize = process.argv[3];
+const open = process.argv[4];
+const close = process.argv[5]
+const period = parseInt(process.argv[6]);
+const recipients = process.argv[7];
 
 //Pull Data and Process
 data(instrument, open, close, period, function(source){
@@ -23,13 +24,13 @@ data(instrument, open, close, period, function(source){
 	//Build out the data models
 	const c2cData = [...source];
 	const close2CloseModel = c2c(period, c2cData, stats);
-	const c2cOutput = view.markdown(instrument, c2cData[0].date, period, c2cData[0].close, 'Close-to-Close', close2CloseModel);
-	const c2cHtml = view.html(instrument, c2cData[0].date, period, c2cData[0].close, 'Close-to-Close', close2CloseModel);
+	const c2cOutput = view.markdown(instrument, tickSize, c2cData[0].date, period, c2cData[0].close, 'Close-to-Close', close2CloseModel);
+	const c2cHtml = view.html(instrument, tickSize, c2cData[0].date, period, c2cData[0].close, 'Close-to-Close', close2CloseModel);
 
 	const yzData = [...source];
 	const yangZhangModel = yz(period, yzData, stats);
-	const yzOutput = view.markdown(instrument, yzData[0].date, period, yzData[0].close, 'Yang Zhang', yangZhangModel);
-	const yzHtml = view.html(instrument, yzData[0].date, period, yzData[0].close, 'Yang Zhang', yangZhangModel);
+	const yzOutput = view.markdown(instrument, tickSize, yzData[0].date, period, yzData[0].close, 'Yang Zhang', yangZhangModel);
+	const yzHtml = view.html(instrument, tickSize, yzData[0].date, period, yzData[0].close, 'Yang Zhang', yangZhangModel);
 
 	//Format Output
 	const markdown = `## ${instrument}
@@ -46,6 +47,8 @@ data(instrument, open, close, period, function(source){
 	console.log(markdown);
 
 	//Email Report
-	email(recipients, `${instrument} Volatility Report for ${moment().format('YYYY-MM-DD')}`, html);
+	if (recipients) {
+		email(recipients, `${instrument} Volatility Report for ${moment().format('YYYY-MM-DD')}`, html);
+	}
 
 });

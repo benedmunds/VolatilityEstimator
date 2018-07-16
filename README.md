@@ -47,12 +47,18 @@ Update .env with your email settings
 
 Call the index.js file from the command line with the following parameters:
 
-    $ node index.js {instrument} {sessionStart} {sessionEnd} {period} {commaSeparatedEmailRecipients}
+    $ node index.js {instrument} {tickSize} {sessionStart} {sessionEnd} {period} {commaSeparatedEmailRecipients}
 
 
 For example:
 
-    $ node index.js 'ESU18' '08:30' '15:14' 20 'yourEmail@gmail.com'
+    $ node index.js 'ESU18' 0.25 '08:30' '15:14' 20 'yourEmail@gmail.com'
 
 would generate a volatility report for the ESU18 futures for a session of 8:30-15:14 central, with a 20 period average, and email the report to yourEmail@gmail.com
+
+of 
+
+    $ node ./index.js 'CLQ18' 0.1 '08:00' '13:29' 20
+
+would generate a volatility report for the CLQ18 futures for a session of 8:00-13:29 central, with a 20 period average, and not send an email (only generates output and markdown report if no email recipients are supplied).
 
