@@ -58,7 +58,7 @@ For example:
 
 would generate a volatility report for the ESU18 futures for a session of 8:30-15:14 central, with a 20 period average, and email the report to yourEmail@gmail.com
 
-of 
+or 
 
     $ node ./index.js 'CLQ18' 0.1 '08:00' '13:29' 20
 
