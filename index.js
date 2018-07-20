@@ -34,12 +34,18 @@ data(instrument, open, close, period, function(source){
 
 	//Format Output
 	const markdown = `## ${instrument}
-		${c2cOutput}
-		${yzOutput}
+Calculated from a ${period} period rolling window of ${open} to ${close} sessions.
+${c2cOutput}
+${yzOutput}
+
+Data obtained from Barchart.com and is not guaranteed to be accurate.
 	`;
 	const html = `<h2>${instrument}</h2>
-		${c2cHtml}
-		${yzHtml}
+<p>Calculated from a ${period} period rolling window of ${open} to ${close} sessions.</p>
+${c2cHtml}
+${yzHtml}
+
+<p>Data obtained from Barchart.com and is not guaranteed to be accurate.</p>
 	`;
 
 	//Write output to output file and to the console
