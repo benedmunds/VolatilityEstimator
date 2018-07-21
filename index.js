@@ -42,6 +42,7 @@ ${yzOutput}
 
 Data obtained from Barchart.com and is not guaranteed to be accurate.
 	`;
+
 	const html = `<h2>${instrument}</h2>
 <p>Calculated from a ${period} period rolling window of ${open} to ${close} sessions.</p>
 ${c2cHtml}
@@ -50,7 +51,13 @@ ${yzHtml}
 <p>Data obtained from Barchart.com and is not guaranteed to be accurate.</p>
 	`;
 
-	//Write output to output file and to the console
+	const text = `*${instrument} - Volatility Report for ${moment().format('YYYY-MM-DD')}* - ${period} period rolling window of ${open} to ${close} sessions
+\`\`\`${view.aggregateText(instrument, tickSize, c2cData[0].date, period, open, close, c2cData[0].close, close2CloseModel, yangZhangModel)}\`\`\`
+* data obtained from Barchart.com and is not guaranteed to be accurate
+	`;
+	console.log(text);
+
+	// Write output to output file and to the console
 	fs.writeFileSync(`output/${instrument.replace(/\W/g,'')}.md`, markdown);
 	console.log(markdown);
 
@@ -59,12 +66,11 @@ ${yzHtml}
 		email(recipients, `${instrument} Volatility Report for ${moment().format('YYYY-MM-DD')}`, html);
 	}
 
-	//Post to RocketChat
+	// Post to RocketChat
 	if (process.env.ROCKETCHAT_API_URL && chatRoom) {
 		const chatTitle = `${instrument} Volatility Report for ${moment().format('YYYY-MM-DD')}`;
-		const chatFooter = `Calculated from a ${period} period rolling window of ${open} to ${close} sessions.  Data obtained from Barchart.com and is not guaranteed to be accurate.`
 
-		chat.post(chatRoom, chatTitle, chatFooter, instrument, tickSize, yzData[0].date, period, yzData[0].close, close2CloseModel, yangZhangModel);
+		chat.post(chatRoom, text);
 	}
 
 });
