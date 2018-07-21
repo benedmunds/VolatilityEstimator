@@ -64,3 +64,9 @@ or
 
 would generate a volatility report for the CLQ18 futures for a session of 8:00-13:29 central, with a 20 period average, and not send an email (only generates output and markdown report if no email recipients are supplied).
 
+
+You can also post to a RocketChat channel by adding an additional optional parameter or channel name:
+
+    $ node ./index.js 'CLQ18' 0.1 '08:00' '13:29' 20 'yourEmail@gmail.com' '#General'
+
+
