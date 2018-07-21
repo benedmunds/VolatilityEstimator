@@ -7,6 +7,7 @@ const data = require('./lib/data.js');
 const stats = require('./lib/stats.js');
 const view = require('./lib/view.js');
 const email = require('./lib/email.js');
+const chat = require('./lib/rocketchat.js');
 const c2c = require('./models/c2c.js');
 const yz = require('./models/yangZhang.js');
 
@@ -17,6 +18,7 @@ const open = process.argv[4];
 const close = process.argv[5]
 const period = parseInt(process.argv[6]);
 const recipients = process.argv[7];
+const chatRoom = process.argv[8];
 
 //Pull Data and Process
 data(instrument, open, close, period, function(source){
@@ -55,6 +57,14 @@ ${yzHtml}
 	//Email Report
 	if (recipients) {
 		email(recipients, `${instrument} Volatility Report for ${moment().format('YYYY-MM-DD')}`, html);
+	}
+
+	//Post to RocketChat
+	if (process.env.ROCKETCHAT_API_URL && chatRoom) {
+		const chatTitle = `${instrument} Volatility Report for ${moment().format('YYYY-MM-DD')}`;
+		const chatFooter = `Calculated from a ${period} period rolling window of ${open} to ${close} sessions.  Data obtained from Barchart.com and is not guaranteed to be accurate.`
+
+		chat.post(chatRoom, chatTitle, chatFooter, instrument, tickSize, yzData[0].date, period, yzData[0].close, close2CloseModel, yangZhangModel);
 	}
 
 });
