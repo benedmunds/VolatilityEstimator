@@ -53,6 +53,7 @@ ${yzHtml}
 
 	const text = `*${instrument} - Volatility Report for ${moment().format('YYYY-MM-DD')}* - ${period} period rolling window of ${open} to ${close} sessions
 ${view.aggregateText(instrument, tickSize, c2cData[0].date, period, open, close, c2cData[0].close, close2CloseModel, yangZhangModel)}
+* Data obtained from barchart.com and is known to not be 100% accurate.  Use these numbers as a guideline only.
 	`;
 	console.log(text);
 
