@@ -55,7 +55,6 @@ ${yzHtml}
 ${view.aggregateText(instrument, tickSize, c2cData[0].date, period, open, close, c2cData[0].close, close2CloseModel, yangZhangModel)}
 * Data obtained from barchart.com and is known to not be 100% accurate.  Use these numbers as a guideline only.
 	`;
-	console.log(text);
 
 	// Write output to output file and to the console
 	fs.writeFileSync(`output/${instrument.replace(/\W/g,'')}.md`, markdown);
@@ -68,8 +67,6 @@ ${view.aggregateText(instrument, tickSize, c2cData[0].date, period, open, close,
 
 	// Post to RocketChat
 	if (process.env.ROCKETCHAT_API_URL && chatRoom) {
-		const chatTitle = `${instrument} Volatility Report for ${moment().format('YYYY-MM-DD')}`;
-
 		chat.post(chatRoom, text);
 	}
 
