@@ -31,9 +31,14 @@ data(instrument, open, close, period, function(source){
 
 	const yzData = [...source];
 	const yangZhangModel = yz(period, yzData, stats);
-	const yzOutput = view.markdown(instrument, tickSize, yzData[0].date, period, yzData[0].close, 'Yang Zhang', yangZhangModel);
-	const yzHtml = view.html(instrument, tickSize, yzData[0].date, period, yzData[0].close, 'Yang Zhang', yangZhangModel);
+	// const yzOutput = view.markdown(instrument, tickSize, yzData[0].date, period, yzData[0].close, 'Yang Zhang', yangZhangModel);
+	// const yzHtml = view.html(instrument, tickSize, yzData[0].date, period, yzData[0].close, 'Yang Zhang', yangZhangModel);
 
+	//TODO - FIX
+	const yzOutput = 'Yang Zhang has been removed for now since there is an issue with the calculation that I need to investigate.';
+	const yzHtml = yzOutput;
+
+	
 	//Format Output
 	const markdown = `## ${instrument}
 Calculated from a ${period} period rolling window of ${open} to ${close} sessions.
