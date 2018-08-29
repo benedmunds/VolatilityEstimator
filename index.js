@@ -36,9 +36,9 @@ data(instrument, open, close, period, function(source){
 
 	//TODO - FIX
 	const yzOutput = 'Yang Zhang has been removed for now since there is an issue with the calculation that I need to investigate.';
-	const yzHtml = yzOutput;
+	const yzHtml = `<p>${yzOutput}</p>`;
 
-	
+
 	//Format Output
 	const markdown = `## ${instrument}
 Calculated from a ${period} period rolling window of ${open} to ${close} sessions.
