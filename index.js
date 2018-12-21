@@ -35,31 +35,30 @@ data(instrument, open, close, period, function(source){
 	// const yzHtml = view.html(instrument, tickSize, yzData[0].date, period, yzData[0].close, 'Yang Zhang', yangZhangModel);
 
 	//TODO - FIX
-	const yzOutput = 'Yang Zhang has been removed for now since there is an issue with the calculation that I need to investigate.';
-	const yzHtml = `<p>${yzOutput}</p>`;
+	const yzOutput = '';
+	const yzHtml = ``;
 
 
 	//Format Output
 	const markdown = `## ${instrument}
 Calculated from a ${period} period rolling window of ${open} to ${close} sessions.
 ${c2cOutput}
-${yzOutput}
 
-Data obtained from Barchart.com and is not guaranteed to be accurate.
-	`;
+
+Subscribe to additional markets at [https://volatilityestimator.com/](https://volatilityestimator.com/).`;
 
 	const html = `<h2>${instrument}</h2>
 <p>Calculated from a ${period} period rolling window of ${open} to ${close} sessions.</p>
 ${c2cHtml}
-${yzHtml}
 
-<p>Data obtained from Barchart.com and is not guaranteed to be accurate.</p>
-	`;
+<br /><br />
+<p>Subscribe to additional markets at <a href="https://volatilityestimator.com/">VolatilityEstimator.com</a>.</p>`;
 
 	const text = `*${instrument} - Volatility Report for ${moment().format('YYYY-MM-DD')}* - ${period} period rolling window of ${open} to ${close} sessions
 ${view.aggregateText(instrument, tickSize, c2cData[0].date, period, open, close, c2cData[0].close, close2CloseModel, yangZhangModel)}
-* Data obtained from barchart.com and is known to not be 100% accurate.  Use these numbers as a guideline only.
-	`;
+
+Subscribe to additional markets at: https://volatilityestimator.com
+`;
 
 	// Write output to output file and to the console
 	fs.writeFileSync(`output/${instrument.replace(/\W/g,'')}.md`, markdown);

@@ -5,11 +5,11 @@ Example data represents the E-mini S&P 500 Futures.
 
 Data is loaded via the Barcharts API.
 
-Currently supports Close-to-Close (http://www.todaysgroep.nl/media/236846/measuring_historic_volatility.pdf) and Yang-Zhang (http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.628.4037&rep=rep1&type=pdf) volatility models.
+Currently supports the Historical Close-to-Close (http://www.todaysgroep.nl/media/236846/measuring_historic_volatility.pdf) volatility model and is in progress for a Yang-Zhang (http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.628.4037&rep=rep1&type=pdf) volatility model.
 
 
 ## Example Calculations
-		
+
 ### Close-to-Close
 
 | ESU18       |                | Stat          | Value    |
@@ -23,7 +23,7 @@ Currently supports Close-to-Close (http://www.todaysgroep.nl/media/236846/measur
 |             |                | 2 Sigma DOWN  |  2741.25 |
 |             |                | 3 Sigma DOWN  |  2725.00 |
 
-		
+
 ### Yang Zhang
 
 | ESU18       |                | Stat          | Value    |
@@ -36,6 +36,7 @@ Currently supports Close-to-Close (http://www.todaysgroep.nl/media/236846/measur
 |             |                | 1 Sigma DOWN  |  2760.50 |
 |             |                | 2 Sigma DOWN  |  2747.00 |
 |             |                | 3 Sigma DOWN  |  2733.75 |
+
 
 
 ## Setup
@@ -58,7 +59,7 @@ For example:
 
 would generate a volatility report for the ESU18 futures for a session of 8:30-15:14 central, with a 20 period average, and email the report to yourEmail@gmail.com
 
-or 
+or
 
     $ node ./index.js 'CLQ18' 0.1 '08:00' '13:29' 20
 
@@ -70,3 +71,7 @@ You can also post to a RocketChat channel by adding an additional optional param
     $ node ./index.js 'CLQ18' 0.1 '08:00' '13:29' 20 'yourEmail@gmail.com' '#General'
 
 
+
+## Don't want to host yourself?
+
+There's a subscription available for various daily email reports at: [https://volatilityestimator.com/](https://volatilityestimator.com/)
