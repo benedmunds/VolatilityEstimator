@@ -7,11 +7,13 @@ const data = require('./lib/data.js');
 const stats = require('./lib/stats.js');
 const view = require('./lib/view.js');
 const singleView = require('./lib/singleView.js');
+const doubleView = require('./lib/doubleView.js');
 const email = require('./lib/email.js');
 const chat = require('./lib/rocketchat.js');
 const c2c = require('./models/c2c.js');
 const yz = require('./models/yangZhang.js');
 const atr = require('./models/atr.js');
+const trueRange = require('./models/trueRange.js');
 
 //Config
 const instrument = process.argv[2];
@@ -42,17 +44,19 @@ data(instrument, open, close, period, function(source){
 	//ATR
 	const atrData = [...source];
 	const atrModel = atr(period, atrData, stats);
-	const atrOutput = singleView.markdown(instrument, tickSize, atrData[0].date, period, atrData[0].close, 'ATR', atrModel);
-	const atrHtml = singleView.html(instrument, tickSize, atrData[0].date, period, atrData[0].close, 'ATR', atrModel);
+	const trData = [...source];
+	const trModel = trueRange(period, trData, stats);
+	const trOutput = doubleView.markdown(instrument, tickSize, atrData[0].date, period, atrData[0].close, 'True Range', 'ATR', atrModel, 'True Range (2Sigma)', trModel.stdDev * 2);
+	const trHtml = doubleView.html(instrument, tickSize, atrData[0].date, period, atrData[0].close, 'True Range', 'ATR', atrModel, 'True Range (2Sigma)', trModel.stdDev * 2);
 
-
+	console.log(atr);
 
 	//Format Output
 	const markdown = `## ${instrument}
 Calculated from a ${period} period rolling window of ${open} to ${close} sessions.
 ${c2cOutput}
 
-${atrOutput}
+${trOutput}
 
 
 Subscribe to additional markets at [https://volatilityestimator.com/](https://volatilityestimator.com/).`;
@@ -60,7 +64,7 @@ Subscribe to additional markets at [https://volatilityestimator.com/](https://vo
 	const html = `<h2>${instrument}</h2>
 <p>Calculated from a ${period} period rolling window of ${open} to ${close} sessions.</p>
 ${c2cHtml}
-${atrHtml}
+${trHtml}
 
 <br /><br />
 <p>Subscribe to additional markets at <a href="https://volatilityestimator.com/">VolatilityEstimator.com</a>.</p>`;
